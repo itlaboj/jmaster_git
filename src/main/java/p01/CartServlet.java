@@ -2,6 +2,8 @@ package p01;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,14 +15,14 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class CounterServlet
  */
-@WebServlet("/counter02")
-public class CounterServlet02 extends HttpServlet {
+@WebServlet("/cart")
+public class CartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CounterServlet02() {
+    public CartServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,37 +31,31 @@ public class CounterServlet02 extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//文字化け対策
+		request.setCharacterEncoding("UTF-8");
+
+		//リクエスト情報の取得
+		String product = request.getParameter("PRODUCT");
+		
 		//セッション・オブジェクトを取得
 		//なければ新しく生成し取得する。
 		//あれば既存のものを取得する
 		//HttpSession session = request.getSession();でもOK
 		HttpSession session = request.getSession(true);
 		
-		//セッション・オブジェクトの消滅時間を設定
-		//session.setMaxInactiveInterval(10);
+		//セッション・オブジェクトの中のキー「CART」の値を取得する
+		@SuppressWarnings("unchecked") //警告を気にしなくていいよ！
+		List<String> cart = (List<String>)session.getAttribute("CART");
 		
-		//セッション・オブジェクトの中のキー「COUNT」の値を取得する
-		Integer count = (Integer)session.getAttribute("COUNT");
-		
-		//キー「COUNT」がなければ初期値0を設定する。
-		if (count == null) {
-			count = 0;
+		//キー「CART」がなければ空のArrayListを設定する。
+		if (cart == null) {
+			cart = new ArrayList<>();
 		}
 		
-		count++; //カウントアップする
+		cart.add(product); //商品を買い物かごに入れる
 		
-		
-//		if (count > 10) {
-//			count = 1;
-//		}
-		
-		//セッション・オブジェクトにキー「COUNT」でカウント値を設定する
-		session.setAttribute("COUNT", count);
-		
-		if (count >= 10) {
-			//session.removeAttribute("COUNT");
-			session.invalidate();
-		}
+		//セッション・オブジェクトにキー「CART」で買い物かごを設定する
+		session.setAttribute("CART", cart);
 		
 		//Webブラウザへのお知らせ情報
 		response.setContentType("text/html; charset=UTF-8");
@@ -73,9 +69,13 @@ public class CounterServlet02 extends HttpServlet {
 		out.println("<title>カウンター</title>");
 		out.println("</head>");
 		out.println("<body>");
-		out.println("セッションID：" + session.getId() + "<br>");
-		out.println("カウント値：" + count + "<br>");
-		out.println("<a href='/jmaster_git/counter02'>カウントアップ</a><br>");
+		out.println("買い物かごの中：" + "<br>");
+		
+		for (String p : cart) {
+			out.println("・" + p + "<br>");
+		}
+		
+		out.println("<a href='/jmaster_git/shop.html'>商品一覧に戻る</a><br>");
 		out.println("</body>");
 		out.println("</html>");
 	}
