@@ -31,15 +31,23 @@ public class MurasakiServlet extends HttpServlet {
 		//文字化け対策
 		request.setCharacterEncoding("UTF-8");
 		
+		//ACTIONの情報を取得
+		String action = request.getParameter("ACTION");
+		
 		//加算処理（吉田さんにやらせる）
 		String page = "";
 		
 		try {
-			YoshidaBean y = new YoshidaBean();
-			page = y.tasu(request);
+			if (action.equals("tasu")) {
+				YoshidaBean y = new YoshidaBean();
+				page = y.tasu(request);
+			} else if (action.equals("hiku")) {
+				AraiBean a = new AraiBean();
+				page = a.hiku(request);
+			}
+			
 		} catch (Exception e) {
-			request.setAttribute("ERROR_MESSAGE", e.getMessage());
-			page = (String)request.getAttribute("PAGE");
+			e.printStackTrace();
 		}
 		
 		//表示処理（是村さんにやらせる）

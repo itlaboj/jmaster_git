@@ -4,19 +4,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>加算処理</title>
+<title>減算処理</title>
 </head>
 <body>
-<h1>加算処理</h1>
+<h1>減算処理</h1>
 <hr>
 <form action="/jmaster_git/murasaki" method="get">
-	<input type="hidden" name="ACTION" value="tasu">
+	<input type="hidden" name="ACTION" value="hiku">
 	
 	<input type="text" name="DATA1">
-	＋
+	ー
 	<input type="text" name="DATA2">
 	<br>
-	<input type="submit" value="加算結果表示">
+	<input type="submit" value="減算結果表示">
 </form>
 ${ERROR_MESSAGE}
 </body>
