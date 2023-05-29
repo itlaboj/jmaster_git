@@ -34,17 +34,19 @@ public class MurasakiServlet extends HttpServlet {
 		//ACTIONの情報を取得
 		String action = request.getParameter("ACTION");
 		
-		//加算処理（吉田さんにやらせる）
+		ID id = null;
 		String page = "";
 		
 		try {
 			if (action.equals("tasu")) {
-				YoshidaBean y = new YoshidaBean();
-				page = y.tasu(request);
+				id = new YoshidaBean();
+				//page = id.execute(request);
 			} else if (action.equals("hiku")) {
-				AraiBean a = new AraiBean();
-				page = a.hiku(request);
+				id = new AraiBean();
+				//page = id.execute(request);
 			}
+			
+			page = id.execute(request);	
 			
 		} catch (Exception e) {
 			e.printStackTrace();

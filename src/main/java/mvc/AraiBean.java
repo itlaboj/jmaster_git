@@ -2,9 +2,9 @@ package mvc;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class AraiBean {
+public class AraiBean implements ID {
 	//減算処理結果を返す
-	public String hiku(HttpServletRequest request) throws Exception {
+	public String execute(HttpServletRequest request) throws Exception {
 		//リクエスト情報を取得
 		int x = Integer.parseInt(request.getParameter("DATA1"));
 		int y = Integer.parseInt(request.getParameter("DATA2"));
