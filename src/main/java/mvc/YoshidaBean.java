@@ -4,11 +4,13 @@ import javax.servlet.http.HttpServletRequest;
 
 public class YoshidaBean {
 	//加算処理結果を返す
-	public int tasu(HttpServletRequest request) {
+	public void tasu(HttpServletRequest request) {
 		//リクエスト情報を取得
 		int x = Integer.parseInt(request.getParameter("DATA1"));
 		int y = Integer.parseInt(request.getParameter("DATA2"));
 		
-		return x + y;
+		int result = x + y;
+		
+		request.setAttribute("RESULT", result);
 	}
 }

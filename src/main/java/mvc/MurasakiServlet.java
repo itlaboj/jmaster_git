@@ -33,11 +33,9 @@ public class MurasakiServlet extends HttpServlet {
 		
 		//加算処理（吉田さんにやらせる）
 		YoshidaBean y = new YoshidaBean();
-		int result = y.tasu(request);
+		y.tasu(request);
 		
 		//表示処理（是村さんにやらせる）
-		request.setAttribute("RESULT", result);
-		
 		RequestDispatcher rd = request.getRequestDispatcher("/mvc/koremura.jsp");
 		rd.forward(request, response);
 	}
