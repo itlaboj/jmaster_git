@@ -38,8 +38,7 @@ public class MurasakiServlet extends HttpServlet {
 			YoshidaBean y = new YoshidaBean();
 			page = y.tasu(request);
 		} catch (Exception e) {
-			request.setAttribute("ERROR_MESSAGE", "数値を入力してください");
-			page = "/mvc/tasu.jsp";
+			page = (String)request.getAttribute("PAGE");
 		}
 		
 		//表示処理（是村さんにやらせる）
