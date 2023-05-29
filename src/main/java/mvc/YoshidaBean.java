@@ -13,9 +13,8 @@ public class YoshidaBean {
 			x = Integer.parseInt(request.getParameter("DATA1"));
 			y = Integer.parseInt(request.getParameter("DATA2"));
 		} catch (Exception e) {
-			request.setAttribute("ERROR_MESSAGE", "数値を入力してください");
 			request.setAttribute("PAGE", "/mvc/tasu.jsp");
-			throw new Exception();
+			throw new Exception("数値を入力してください");
 		}
 		
 		int result = x + y;

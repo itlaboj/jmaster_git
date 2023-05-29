@@ -38,6 +38,7 @@ public class MurasakiServlet extends HttpServlet {
 			YoshidaBean y = new YoshidaBean();
 			page = y.tasu(request);
 		} catch (Exception e) {
+			request.setAttribute("ERROR_MESSAGE", e.getMessage());
 			page = (String)request.getAttribute("PAGE");
 		}
 		
