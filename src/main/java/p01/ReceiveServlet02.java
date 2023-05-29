@@ -39,6 +39,7 @@ public class ReceiveServlet02 extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		//リクエスト情報の取得
+		String a = request.getParameter("AAA");
 		String name = request.getParameter("NAMAE");
 		String gender = request.getParameter("GENDER");
 		String pref = request.getParameter("PREF");
@@ -54,6 +55,7 @@ public class ReceiveServlet02 extends HttpServlet {
 		out.println("<title>受信側２</title>");
 		out.println("</head>");
 		out.println("<body>");
+		out.println("隠しフィールドの値：" + a + "<br>");
 		out.println("名前：" + name + "<br>");
 		out.println("性別：" + gender + "<br>");
 		out.println("都道府県：" + pref + "<br>");
