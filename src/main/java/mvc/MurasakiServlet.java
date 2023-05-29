@@ -40,10 +40,12 @@ public class MurasakiServlet extends HttpServlet {
 		try {
 			if (action.equals("tasu")) {
 				id = new YoshidaBean();
-				//page = id.execute(request);
 			} else if (action.equals("hiku")) {
 				id = new AraiBean();
-				//page = id.execute(request);
+			} else if (action.equals("kake")) {
+				id = new NakadaBean();
+			} else if (action.equals("waru")) {
+				id = new TerauchiBean();
 			}
 			
 			page = id.execute(request);	
