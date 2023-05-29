@@ -31,13 +31,9 @@ public class MurasakiServlet extends HttpServlet {
 		//文字化け対策
 		request.setCharacterEncoding("UTF-8");
 		
-		//リクエスト情報を取得
-		int data1 = Integer.parseInt(request.getParameter("DATA1"));
-		int data2 = Integer.parseInt(request.getParameter("DATA2"));
-		
 		//加算処理（吉田さんにやらせる）
 		YoshidaBean y = new YoshidaBean();
-		int result = y.tasu(data1, data2);
+		int result = y.tasu(request);
 		
 		//表示処理（是村さんにやらせる）
 		request.setAttribute("RESULT", result);
