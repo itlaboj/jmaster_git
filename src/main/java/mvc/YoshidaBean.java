@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public class YoshidaBean {
 	//加算処理結果を返す
-	public String tasu(HttpServletRequest request) {
+	public String tasu(HttpServletRequest request) throws Exception {
 		//リクエスト情報を取得
 		int x = Integer.parseInt(request.getParameter("DATA1"));
 		int y = Integer.parseInt(request.getParameter("DATA2"));

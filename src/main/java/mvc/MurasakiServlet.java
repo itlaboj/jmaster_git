@@ -32,8 +32,15 @@ public class MurasakiServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		//加算処理（吉田さんにやらせる）
-		YoshidaBean y = new YoshidaBean();
-		String page = y.tasu(request);
+		String page = "";
+		
+		try {
+			YoshidaBean y = new YoshidaBean();
+			page = y.tasu(request);
+		} catch (Exception e) {
+			request.setAttribute("ERROR_MESSAGE", "数値を入力してください");
+			page = "/mvc/tasu.jsp";
+		}
 		
 		//表示処理（是村さんにやらせる）
 		RequestDispatcher rd = request.getRequestDispatcher(page);
