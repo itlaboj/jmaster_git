@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page session="true" %>
 <%@ page import="p01.Member" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -26,7 +26,7 @@ ID：${MEMBER.id}<br>
 名前：${MEMBER.name}<br>
 年齢：${MEMBER.age}<br>
 <hr>
-<c:forEach var="data" items="${LIST1} varStatus="xxx">
+<c:forEach var="data" items="${LIST1}" varStatus="xxx">
 	${xxx.index}　${data}<br>
 </c:forEach>
 <hr>
@@ -34,9 +34,9 @@ ID：${MEMBER.id}<br>
 	${xxx.count}　${data}<br>
 </c:forEach>
 <hr>
-${MAP.k1}<br>
-${MAP.k2}<br>
-${MAP.k3}<br>
+<c:forEach var="data" items="${MAP}">
+	${data.key}　${data.value}<br>
+</c:forEach>
 
 </body>
 </html>
